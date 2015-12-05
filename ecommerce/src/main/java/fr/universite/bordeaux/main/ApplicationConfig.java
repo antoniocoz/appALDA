@@ -8,7 +8,7 @@ import java.util.Set;
 import javax.ws.rs.ApplicationPath;
 import javax.ws.rs.core.Application;
 
-import fr.universite.bordeaux.ressources.UtilisateurResource;
+import fr.universite.bordeaux.ressources.PersonneRessource;
 
 @ApplicationPath("api")
 public class ApplicationConfig extends Application{
@@ -26,7 +26,7 @@ public class ApplicationConfig extends Application{
         //resources.add(com.fasterxml.jackson.jaxrs.json.JacksonJaxbJsonProvider.class);
         
         //instead let's do it manually:
-        resources.add(UtilisateurResource.class);
+        resources.add(PersonneRessource.class);
         //==> we could also choose packages, see below getProperties()
         
         System.out.println("REST configuration ended successfully.");
