@@ -1,63 +1,63 @@
-// Invocar modo JavaScript 'strict'
+// appeller en mode JavaScript 'strict'
 'use strict';
 
-// Crear el controller 'articles'
+// Creer le controller 'personnesController'
 angular.module('personnes').controller('personneController', ['$scope', '$routeParams', '$location', 'personneService',
     function($scope, $routeParams, $location, personneService) {
-        // Exponer el service Authentication
+        // Service d'Authentication
         //$scope.authentication = Authentication;
 
- // Crear un nuevo método controller para crear nuevos articles
+        // methode controller pour créer des personnes 
         $scope.create = function() {
-            // Usar los campos form para crear un nuevo objeto $resource article
+            // Utiliser les champs du form pour créer un nouveau $resource personne
             var personneService = new personneService({
                 titulo: this.titulo,
                 contenido: this.contenido
             });
 
-            // Usar el método '$save' de article para enviar una petición POST apropiada
+            // le methode '$save' de personneService pour envoyer une petition POST 
             personneService.$save(function(response) {
-                // Si un artículo fue creado de modo correcto, redireccionar al usuario a la página del artículo 
+                // Si un personne est cree du mode correct retourne a liste des personnes 
                 $location.path('personnes/' + response._id);
             }, function(errorResponse) {
-                // En otro caso, presentar al usuario el mensaje de error
+                // En autre cas, presenter l'utilisateur el message d'erreur
                 $scope.error = errorResponse.data.message;
             });
         };
 
-// Crear un nuevo método controller para recuperar una lista de artículos
+        // methode pour recuperer une liste des personnes
         $scope.find = function() {
-            // Usar el método 'query' de article para enviar una petición GET apropiada
+            // Utiliser le methode 'query' de personneService pour envoyer une petition GET
             $scope.personnes = personneService.query();
         };
 
-        // Crear un nuevo método controller para recuperar un unico artículo
+        // methode pour recuperer un personne
         $scope.findOne = function() {
-            // Usar el método 'get' de article para enviar una petición GET apropiada
+            // Methode 'get' de personneService pour envoyer une petition GET
             $scope.personne = personneService.get({
             	idPersonne: $routeParams.idPersonne
             });
         };
 
- // Crear un nuevo método controller para actualizar un único article
+       // methode pour faire la mise a jour d'un personne
         $scope.update = function() {
-            // Usar el método '$update' de article para enviar una petición PUT apropiada
+            // Utiliser le methode '$update' de personneService pour envoyer une petition PUT
             $scope.personne.$update(function() {
-                // Si un article fue actualizado de modo correcto, redirigir el user a la página del article 
+                // Si un personne etait bien actualise on retourne a la page d'utilisateurs 
                 $location.path('personnes/' + $scope.personne.idPersonne);
             }, function(errorResponse) {
-                // En otro caso, presenta al user un mensaje de error
+            	// En autre cas, presenter l'utilisateur el message d'erreur
                 $scope.error = errorResponse.data.message;
             });
         };
 
-// Crear un nuevo método controller para borrar un único artículo
+        // methode pour supprimer un personne 
         $scope.delete = function(personne) {
-            // Si un artículo fue enviado al método, borrarlo
+            // si un personne est envoie dans la methode
             if (personne) {
-                // Usar el método '$remove' del artículo para borrar el artículo
+                // Utiliser la methode '$remove' pour supprimer la personne 
             	personne.$remove(function() {
-                    // Eliminar el artículo de la lista de artículos
+                    // Supprimer la personne de la liste d'utilisateurs
                     for (var i in $scope.personnes) {
                         if ($scope.personnes[i] === personne) {
                             $scope.personnes.splice(i, 1);
@@ -65,7 +65,7 @@ angular.module('personnes').controller('personneController', ['$scope', '$routeP
                     }
                 });
             } else {
-                // En otro caso, usar el método '$remove' de article para borrar el article
+            	// En autre cas, utiliser la methode '$remove' de l'utilisateur
                 $scope.personne.$remove(function() {
                     $location.path('personnes');
                 });

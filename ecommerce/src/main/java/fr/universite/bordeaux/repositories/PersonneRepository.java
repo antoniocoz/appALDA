@@ -15,7 +15,9 @@ public class PersonneRepository {
 	
 	private static final String JPQL_SELECT = "SELECT p FROM Personne p";
 	private static final String JPQL_SELECT_PAR_EMAIL = "SELECT p FROM Personne p WHERE p.mail=:mail";
+	private static final String JPQL_SELECT_PAR_ID = "SELECT p FROM Personne p WHERE p.id=:id";
 	private static final String PARAM_EMAIL = "mail";
+	private static final String PARAM_ID = "id";
 	@PersistenceContext(unitName = "ecommercePersistenceUnit")
 	private EntityManager entityManager;
 	
@@ -42,6 +44,13 @@ public class PersonneRepository {
 	
 	public Personne getId(Long id){
 		return entityManager.find(Personne.class, id);
+	}
+	
+	public void delete(long idPersone){
+		Query query=entityManager.createQuery(JPQL_SELECT_PAR_ID);
+		query.setParameter(PARAM_ID, idPersone);
+		Personne personne=(Personne) query.getSingleResult();
+		entityManager.remove(personne);
 	}
 
 }

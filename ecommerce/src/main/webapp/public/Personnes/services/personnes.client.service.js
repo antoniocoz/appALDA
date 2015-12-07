@@ -1,9 +1,9 @@
 // Invocar modo JavaScript 'strict'
 'use strict';
 
-// Crear el service 'articles'
+// Creer le service 'personneService'
 angular.module('personnes').factory('personneService', ['$resource', function($resource) {
-	// Usar el service '$resource' para devolver un objeto '$resource' article
+	// Utiliser le service '$resource' pour retourner un objet '$resource' personne
     return $resource('api/personnes/:personneId', {
         personneId: '@_id'
     }, {

@@ -1,21 +1,21 @@
 // Invocar modo JavaScript 'strict'
 'use strict';
 
-// Configurar el módulo routes de 'articles'
+// Configurer le módule routes de 'personnes'
 angular.module('personnes').config(['$routeProvider',
 	function($routeProvider) {
 		$routeProvider.
 		when('/personnes', {
 			templateUrl: 'public/personnes/views/list-personnes.client.view.html'
-		})/*.
-		when('/utilisateurs/create', {
-			templateUrl: 'articles/views/create-article.client.view.html'
 		}).
-		when('/utilisateurs/:utilisateurId', {
-			templateUrl: 'articles/views/view-article.client.view.html'
+		when('/personnes/create', {
+			templateUrl: 'public/personnes/views/create-personne.client.view.html'
 		}).
-		when('/utilisateurs/:utilisateurId/edit', {
-			templateUrl: 'articles/views/edit-article.client.view.html'
-		})*/;
+		when('/personnes/:personneId', {
+			templateUrl: 'public/personnes/views/view-personne.client.view.html'
+		}).
+		when('/personnes/:personneId/edit', {
+			templateUrl: 'public/personnes/views/edit-personne.client.view.html'
+		});
 	}
 ]);
