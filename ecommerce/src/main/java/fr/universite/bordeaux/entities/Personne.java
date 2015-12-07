@@ -7,7 +7,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Table;
 
 @Entity
 public class Personne implements Serializable{
@@ -24,7 +23,7 @@ public class Personne implements Serializable{
 	private String nom;
 	@Column(length=100)
 	private String adresse;
-	@Column(length=150)
+	@Column(length=50)
 	private String ville;
 	@Column(length=10)
 	private String tel;

@@ -34,17 +34,17 @@ angular.module('personnes').controller('personneController', ['$scope', '$routeP
         // Crear un nuevo método controller para recuperar un unico artículo
         $scope.findOne = function() {
             // Usar el método 'get' de article para enviar una petición GET apropiada
-            $scope.utilisateur = personneService.get({
-            	idUtilisateur: $routeParams.idUtilisateur
+            $scope.personne = personneService.get({
+            	idPersonne: $routeParams.idPersonne
             });
         };
 
  // Crear un nuevo método controller para actualizar un único article
         $scope.update = function() {
             // Usar el método '$update' de article para enviar una petición PUT apropiada
-            $scope.utilisateur.$update(function() {
+            $scope.personne.$update(function() {
                 // Si un article fue actualizado de modo correcto, redirigir el user a la página del article 
-                $location.path('personnes/' + $scope.utilisateur.idUtilisateur);
+                $location.path('personnes/' + $scope.personne.idPersonne);
             }, function(errorResponse) {
                 // En otro caso, presenta al user un mensaje de error
                 $scope.error = errorResponse.data.message;
@@ -52,21 +52,21 @@ angular.module('personnes').controller('personneController', ['$scope', '$routeP
         };
 
 // Crear un nuevo método controller para borrar un único artículo
-        $scope.delete = function(utilisateur) {
+        $scope.delete = function(personne) {
             // Si un artículo fue enviado al método, borrarlo
-            if (utilisateur) {
+            if (personne) {
                 // Usar el método '$remove' del artículo para borrar el artículo
-            	utilisateur.$remove(function() {
+            	personne.$remove(function() {
                     // Eliminar el artículo de la lista de artículos
                     for (var i in $scope.personnes) {
-                        if ($scope.personnes[i] === utilisateur) {
+                        if ($scope.personnes[i] === personne) {
                             $scope.personnes.splice(i, 1);
                         }
                     }
                 });
             } else {
                 // En otro caso, usar el método '$remove' de article para borrar el article
-                $scope.utilisateur.$remove(function() {
+                $scope.personne.$remove(function() {
                     $location.path('personnes');
                 });
             }
