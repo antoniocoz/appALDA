@@ -45,6 +45,10 @@ public class Personne implements Serializable{
 	@OneToMany(mappedBy="personne")
 	private List<Annonce> annonces;
 	
+	@JsonBackReference
+	@OneToMany(mappedBy="personne")
+	private List<Critere> criteres;
+	
 	@JsonManagedReference
 	@ManyToMany(fetch=FetchType.LAZY,cascade = CascadeType.ALL)
 	@JoinTable(name="relationpersonnerole", 

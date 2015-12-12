@@ -14,9 +14,7 @@ public class AnnonceRepository {
 
 	private static final String JPQL_SELECT = "SELECT a FROM Annonce a";
 	private static final String JPQL_SELECT_PAR_PERSONNE = "SELECT a FROM Annonce a WHERE a.personne.id=:idPersonne";
-	private static final String JPQL_SELECT_PAR_ID = "SELECT a FROM Annonce a WHERE a.id=:id";
 	private static final String PARAM_PERSONNE = "idPersonne";
-	private static final String PARAM_ID = "id";
 	@PersistenceContext(unitName = "ecommercePersistenceUnit")
 	private EntityManager entityManager;
 	
@@ -45,6 +43,7 @@ public class AnnonceRepository {
 	public Annonce getId(long id){
 		return entityManager.find(Annonce.class, id);
 	}
+	
 	public void delete(long id){
 		Annonce annonce=getId(id);
 		entityManager.remove(annonce);
