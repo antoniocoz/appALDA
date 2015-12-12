@@ -1,12 +1,22 @@
 package fr.universite.bordeaux.entities;
 
 import java.io.Serializable;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 public class Personne implements Serializable{
@@ -31,7 +41,17 @@ public class Personne implements Serializable{
 	private String mail;
 	@Column(length=100)
 	private String pass;
+	@JsonBackReference
+	@OneToMany(mappedBy="personne")
+	private List<Annonce> annonces;
 	
+	@JsonManagedReference
+	@ManyToMany(fetch=FetchType.LAZY,cascade = CascadeType.ALL)
+	@JoinTable(name="relationpersonnerole", 
+	           joinColumns={ @JoinColumn (name="idPersonne", referencedColumnName="id") },
+	           inverseJoinColumns={ @JoinColumn(name="idRole", referencedColumnName="id") } )
+	private List<Role> roles;
+
 	public Personne(){
 		
 	}
@@ -85,6 +105,21 @@ public class Personne implements Serializable{
 		this.pass = pass;
 	}
 	
+	public List<Annonce> getAnnonces() {
+		return annonces;
+	}
+
+	public void setAnnonces(List<Annonce> annonces) {
+		this.annonces = annonces;
+	}
+
+	public List<Role> getRoles() {
+		return roles;
+	}
+
+	public void setRoles(List<Role> roles) {
+		this.roles = roles;
+	}
 	
 	
 }

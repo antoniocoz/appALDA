@@ -6,6 +6,8 @@
 	              http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
   <persistence-unit name="ecommercePersistenceUnit">
   <class>fr.universite.bordeaux.entities.Personne</class>
+  <class>fr.universite.bordeaux.entities.Annonce</class>
+  <class>fr.universite.bordeaux.entities.Role</class>
     <properties>
       <property name="openjpa.jdbc.DBDictionary" value="mysql" />
       <!-- Cette propriété active la log des requêtes SQL réalisées par OpenJPA -->

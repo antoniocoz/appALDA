@@ -8,6 +8,7 @@ import java.util.Set;
 import javax.ws.rs.ApplicationPath;
 import javax.ws.rs.core.Application;
 
+import fr.universite.bordeaux.ressources.AnnonceRessource;
 import fr.universite.bordeaux.ressources.PersonneRessource;
 
 @ApplicationPath("api")
@@ -27,6 +28,7 @@ public class ApplicationConfig extends Application{
         
         //instead let's do it manually:
         resources.add(PersonneRessource.class);
+        resources.add(AnnonceRessource.class);
         //==> we could also choose packages, see below getProperties()
         
         System.out.println("REST configuration ended successfully.");
