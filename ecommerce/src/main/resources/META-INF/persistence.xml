@@ -8,6 +8,7 @@
   <class>fr.universite.bordeaux.entities.Personne</class>
   <class>fr.universite.bordeaux.entities.Annonce</class>
   <class>fr.universite.bordeaux.entities.Role</class>
+  <class>fr.universite.bordeaux.entities.Critere</class>
     <properties>
       <property name="openjpa.jdbc.DBDictionary" value="mysql" />
       <!-- Cette propriété active la log des requêtes SQL réalisées par OpenJPA -->
