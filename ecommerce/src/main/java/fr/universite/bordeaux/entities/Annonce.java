@@ -35,7 +35,7 @@ public class Annonce implements Serializable{
 	private String ville;
 	@Column(length=65535)
 	private String description;
-	@JsonManagedReference
+	@JsonManagedReference(value="personne-annonce")
 	@ManyToOne
 	@JoinColumn(name="idPersonne", referencedColumnName="id")
 	private Personne personne;

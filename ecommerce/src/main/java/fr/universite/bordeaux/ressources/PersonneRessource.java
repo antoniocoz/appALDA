@@ -31,7 +31,7 @@ public class PersonneRessource {
 	
 	@POST
 	@Path("/create")
-	@Consumes("application/json")
+	@Consumes(MediaType.APPLICATION_JSON)
 	public void addPersonne(Personne personne){
 		personneRepository.save(personne);
 	}

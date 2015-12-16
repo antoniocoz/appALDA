@@ -17,6 +17,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 
@@ -45,15 +46,16 @@ public class Personne implements Serializable{
 	@Column(length=100)
 	private String pass;
 
-	@JsonBackReference
-	@OneToMany(fetch=FetchType.LAZY,mappedBy="personne")
+	@JsonBackReference(value="personne-annonce")
+	@JsonIgnore
+	@OneToMany(mappedBy="personne")
 	private List<Annonce> annonces;
 	
-	@JsonBackReference
+	@JsonBackReference(value="personne-critere")
 	@OneToMany(mappedBy="personne")
 	private List<Critere> criteres;
 	
-	@JsonManagedReference
+	@JsonManagedReference(value="personne-role")
 	@ManyToOne
 	@JoinColumn(name="idRole", referencedColumnName="id")
 	private Role role;

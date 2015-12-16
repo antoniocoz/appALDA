@@ -22,8 +22,7 @@ public class Critere implements Serializable{
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private long id;
-	
-	@JsonManagedReference
+	@JsonManagedReference(value="personne-critere")
 	@ManyToOne
 	@JoinColumn(name="idPersonne", referencedColumnName="id")
 	private Personne personne;
