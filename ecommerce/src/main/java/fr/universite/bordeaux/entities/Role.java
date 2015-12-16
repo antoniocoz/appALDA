@@ -9,8 +9,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+
 
 @Entity
 public class Role implements Serializable{
@@ -30,7 +32,7 @@ public class Role implements Serializable{
 	private String description;
 	
 	@JsonBackReference
-	@ManyToMany(mappedBy="roles")
+	@OneToMany(mappedBy="role")
 	private List<Personne> personnes;
 	
 	

@@ -12,6 +12,8 @@ import javax.persistence.ManyToOne;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
+
+
 @Entity
 public class Critere implements Serializable{
 

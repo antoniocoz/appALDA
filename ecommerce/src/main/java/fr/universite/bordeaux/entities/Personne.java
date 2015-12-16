@@ -2,8 +2,8 @@ package fr.universite.bordeaux.entities;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.Set;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -13,10 +13,13 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+
+
 
 @Entity
 public class Personne implements Serializable{
@@ -41,8 +44,9 @@ public class Personne implements Serializable{
 	private String mail;
 	@Column(length=100)
 	private String pass;
+
 	@JsonBackReference
-	@OneToMany(mappedBy="personne")
+	@OneToMany(fetch=FetchType.LAZY,mappedBy="personne")
 	private List<Annonce> annonces;
 	
 	@JsonBackReference
@@ -50,11 +54,9 @@ public class Personne implements Serializable{
 	private List<Critere> criteres;
 	
 	@JsonManagedReference
-	@ManyToMany(fetch=FetchType.LAZY,cascade = CascadeType.ALL)
-	@JoinTable(name="relationpersonnerole", 
-	           joinColumns={ @JoinColumn (name="idPersonne", referencedColumnName="id") },
-	           inverseJoinColumns={ @JoinColumn(name="idRole", referencedColumnName="id") } )
-	private List<Role> roles;
+	@ManyToOne
+	@JoinColumn(name="idRole", referencedColumnName="id")
+	private Role role;
 
 	public Personne(){
 		
@@ -117,13 +119,12 @@ public class Personne implements Serializable{
 		this.annonces = annonces;
 	}
 
-	public List<Role> getRoles() {
-		return roles;
+	public Role getRole() {
+		return role;
 	}
 
-	public void setRoles(List<Role> roles) {
-		this.roles = roles;
+	public void setRoles(Role role) {
+		this.role = role;
 	}
-	
 	
 }

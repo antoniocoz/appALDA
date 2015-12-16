@@ -25,7 +25,8 @@ public class PersonneRessource {
 	@GET
 	@Produces({MediaType.APPLICATION_JSON})
 	public List<Personne> getPersonnes(){
-		return personneRepository.getAll();
+		List<Personne> personnes=personneRepository.getAll();
+		return personnes;
 	}
 	
 	@POST
