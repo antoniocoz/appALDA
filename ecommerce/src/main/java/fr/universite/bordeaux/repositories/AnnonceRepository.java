@@ -18,11 +18,7 @@ public class AnnonceRepository {
 	@PersistenceContext(unitName = "ecommercePersistenceUnit")
 	private EntityManager entityManager;
 	
-	public void save(Annonce annonce){
-		entityManager.persist(annonce);
-	}
-	
-	public void update(Annonce annonce){
+	public void saveOrUpdate(Annonce annonce){
 		entityManager.merge(annonce);
 	}
 	

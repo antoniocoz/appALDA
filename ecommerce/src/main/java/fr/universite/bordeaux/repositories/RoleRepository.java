@@ -16,11 +16,7 @@ public class RoleRepository {
 	@PersistenceContext(unitName = "ecommercePersistenceUnit")
 	private EntityManager entityManager;
 	
-	public void save(Role role){
-		entityManager.persist(role);
-	}
-	
-	public void update(Role role){
+	public void saveOrUpdate(Role role){
 		entityManager.merge(role);
 	}
 	

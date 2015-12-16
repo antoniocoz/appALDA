@@ -32,14 +32,14 @@ public class CritereRessource {
 	@Path("/create")
 	@Consumes("application/json")
 	public void addCritere(Critere critere){
-		critereRepository.save(critere);
+		critereRepository.saveOrUpdate(critere);
 	}
 	
 	@PUT
 	@Path("/update")
 	@Consumes("application/json")
-	public void updateCritere(Critere personne){
-		critereRepository.update(personne);
+	public void updateCritere(Critere critere){
+		critereRepository.saveOrUpdate(critere);
 	}
 	
 	@DELETE

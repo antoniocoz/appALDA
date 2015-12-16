@@ -18,11 +18,7 @@ public class CritereRepository {
 	@PersistenceContext(unitName = "ecommercePersistenceUnit")
 	private EntityManager entityManager;
 	
-	public void save(Critere critere){
-		entityManager.persist(critere);
-	}
-	
-	public void update(Critere critere){
+	public void saveOrUpdate(Critere critere){
 		entityManager.merge(critere);
 	}
 	

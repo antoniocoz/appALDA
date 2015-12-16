@@ -5,25 +5,22 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 
 @Entity
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property="id", scope = Role.class)
 public class Role implements Serializable{
 	
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = -3908683827178697102L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	//@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private long id;
 	
 	@Column(length=45)
@@ -31,7 +28,7 @@ public class Role implements Serializable{
 	@Column(length=300)
 	private String description;
 	
-	@JsonBackReference
+	@JsonIgnore
 	@OneToMany(mappedBy="role")
 	private List<Personne> personnes;
 	

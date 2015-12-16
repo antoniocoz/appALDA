@@ -18,8 +18,8 @@ public class PersonneRepository {
 	@PersistenceContext(unitName = "ecommercePersistenceUnit")
 	private EntityManager entityManager;
 	
-	public void save(Personne personne){
-		entityManager.persist(personne);
+	public void saveOrUpdate(Personne personne){
+		entityManager.merge(personne);
 	}
 	
 	@SuppressWarnings("unchecked")
@@ -33,10 +33,6 @@ public class PersonneRepository {
 		Query query=entityManager.createQuery(JPQL_SELECT_PAR_EMAIL);
 		query.setParameter(PARAM_EMAIL, email);
 		return (Personne) query.getSingleResult();
-	}
-	
-	public void update(Personne personne){
-		entityManager.merge(personne);
 	}
 	
 	public Personne getId(Long id){
