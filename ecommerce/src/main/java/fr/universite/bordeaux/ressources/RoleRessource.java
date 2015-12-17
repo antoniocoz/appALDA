@@ -33,14 +33,14 @@ public class RoleRessource {
 	@Path("/create")
 	@Consumes("application/json")
 	public void addPersonne(Role role){
-		roleRepository.save(role);
+		roleRepository.saveOrUpdate(role);
 	}
 	
 	@PUT
 	@Path("/update")
 	@Consumes("application/json")
 	public void updatePersonne(Role role){
-		roleRepository.update(role);
+		roleRepository.saveOrUpdate(role);
 	}
 	
 	@DELETE

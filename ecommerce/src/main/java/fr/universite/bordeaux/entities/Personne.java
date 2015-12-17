@@ -1,34 +1,30 @@
 package fr.universite.bordeaux.entities;
 
 import java.io.Serializable;
-import java.util.List;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 
 @Entity
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property="id", scope = Personne.class)
 public class Personne implements Serializable{
 	
 	private static final long serialVersionUID = 8897117888817851683L;
 	
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	//@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private long id;
 	
 	@Column(length=50)
@@ -45,18 +41,16 @@ public class Personne implements Serializable{
 	private String mail;
 	@Column(length=100)
 	private String pass;
-
-	@JsonBackReference(value="personne-annonce")
+	
 	@JsonIgnore
 	@OneToMany(mappedBy="personne")
-	private List<Annonce> annonces;
+	private Set<Annonce> annonces;
 	
-	@JsonBackReference(value="personne-critere")
+	@JsonIgnore
 	@OneToMany(mappedBy="personne")
-	private List<Critere> criteres;
+	private Set<Critere> criteres;
 	
-	@JsonManagedReference(value="personne-role")
-	@ManyToOne
+	@ManyToOne(cascade=CascadeType.MERGE,fetch=FetchType.LAZY)
 	@JoinColumn(name="idRole", referencedColumnName="id")
 	private Role role;
 
@@ -113,11 +107,11 @@ public class Personne implements Serializable{
 		this.pass = pass;
 	}
 	
-	public List<Annonce> getAnnonces() {
+	public Set<Annonce> getAnnonces() {
 		return annonces;
 	}
 
-	public void setAnnonces(List<Annonce> annonces) {
+	public void setAnnonces(Set<Annonce> annonces) {
 		this.annonces = annonces;
 	}
 
@@ -127,6 +121,14 @@ public class Personne implements Serializable{
 
 	public void setRoles(Role role) {
 		this.role = role;
+	}
+
+	public Set<Critere> getCriteres() {
+		return criteres;
+	}
+
+	public void setCriteres(Set<Critere> criteres) {
+		this.criteres = criteres;
 	}
 	
 }

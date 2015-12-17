@@ -32,14 +32,14 @@ public class AnnonceRessource {
 	@Path("/create")
 	@Consumes("application/json")
 	public void addAnnonce(Annonce annonce){
-		annonceRepository.save(annonce);
+		annonceRepository.saveOrUpdate(annonce);
 	}
 	
 	@PUT
 	@Path("/update")
 	@Consumes("application/json")
 	public void updateAnnonce(Annonce annonce){
-		annonceRepository.update(annonce);
+		annonceRepository.saveOrUpdate(annonce);
 	}
 	
 	@DELETE
