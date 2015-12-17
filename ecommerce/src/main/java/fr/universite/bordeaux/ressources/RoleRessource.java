@@ -30,7 +30,6 @@ public class RoleRessource {
 	}
 	
 	@POST
-	@Path("/create")
 	@Consumes("application/json")
 	public void addPersonne(Role role){
 		roleRepository.saveOrUpdate(role);
