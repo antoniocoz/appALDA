@@ -27,24 +27,31 @@ public class CritereRessource {
 	public List<Critere> getCriteres(){
 		return critereRepository.getAll();
 	}
+
+	@GET
+	@Path("/{id}")
+	@Produces({MediaType.APPLICATION_JSON})
+	public Critere getCritere(@PathParam("id") long idCritere){
+		return critereRepository.getId(idCritere);
+	}	
+	
 	
 	@POST
-	@Path("/create")
-	@Consumes("application/json")
+	@Consumes({MediaType.APPLICATION_JSON})
 	public void addCritere(Critere critere){
 		critereRepository.saveOrUpdate(critere);
 	}
 	
 	@PUT
-	@Path("/update")
-	@Consumes("application/json")
+	@Path("/{id}")
+	@Consumes({MediaType.APPLICATION_JSON})
 	public void updateCritere(Critere critere){
 		critereRepository.saveOrUpdate(critere);
 	}
 	
 	@DELETE
-	@Path("/delete/{idCritere}")
-	public void deleteCritere(@PathParam("idCritere") long idCritere){
+	@Path("/{id}")
+	public void deleteCritere(@PathParam("id") long idCritere){
 		critereRepository.delete(idCritere);
 	}
 }

@@ -17,12 +17,10 @@
 	                   <td>{{role.nom}}</td>
 	                   <td>{{role.description}}</td>
 	                   <td>
-	                       <a href="#!/roles/{{role._id}}/edit" >
+	                       <a href="#!/roles/{{role.id}}/edit" >
 	                       <button class="btn btn-warning btn-edit">Modifier</button>
                            </a>
-                           <a href="#!/roles/{{role._id}}">
-                              <button class="btn btn-danger btn-delete" data-ng-click="delete();">Supprimer</button> 
-                           </a>
+                           <button class="btn btn-danger btn-delete" data-ng-click="delete(role)">Supprimer</button>
                        </td>
 	               </tr>
                </tbody>

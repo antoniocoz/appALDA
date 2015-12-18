@@ -30,30 +30,29 @@ public class PersonneRessource {
 	}
 	
 	@GET
-	@Path("/{idPersonne}")
+	@Path("/{id}")
 	@Produces({MediaType.APPLICATION_JSON})
-	public Personne getPersonne(@PathParam("idPersonne") long idPersonne){
+	public Personne getPersonne(@PathParam("id") long idPersonne){
 		Personne personne=personneRepository.getId(idPersonne);
 		return personne;
 	}
 	
 	@POST
-	@Path("/create")
 	@Consumes(MediaType.APPLICATION_JSON)
 	public void addPersonne(Personne personne){
 		personneRepository.saveOrUpdate(personne);
 	}
 	
 	@PUT
-	@Path("/update")
+	@Path("/{id}")
 	@Consumes("application/json")
 	public void updatePersonne(Personne personne){
 		personneRepository.saveOrUpdate(personne);
 	}
 	
 	@DELETE
-	@Path("/delete/{idPersonne}")
-	public void deletePersonne(@PathParam("idPersonne") long idPersonne){
+	@Path("/{id}")
+	public void deletePersonne(@PathParam("id") long idPersonne){
 		personneRepository.delete(idPersonne);
 	}
 }

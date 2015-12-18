@@ -28,22 +28,28 @@ public class AnnonceRessource {
 		return annonceRepository.getALL();
 	}
 	
+	@GET
+	@Path("/{id}")
+	@Produces({MediaType.APPLICATION_JSON})
+	public Annonce getAnnonce(@PathParam("id") long idCritere){
+		return annonceRepository.getId(idCritere);
+	}
+		
 	@POST
-	@Path("/create")
-	@Consumes("application/json")
+	@Consumes({MediaType.APPLICATION_JSON})
 	public void addAnnonce(Annonce annonce){
 		annonceRepository.saveOrUpdate(annonce);
 	}
 	
 	@PUT
-	@Path("/update")
-	@Consumes("application/json")
+	@Path("/{id}")
+	@Consumes({MediaType.APPLICATION_JSON})
 	public void updateAnnonce(Annonce annonce){
 		annonceRepository.saveOrUpdate(annonce);
 	}
 	
 	@DELETE
-	@Path("/delete/{id}")
+	@Path("/{id}")
 	public void delete(@PathParam("id") long id){
 		annonceRepository.delete(id);
 	}
