@@ -3,16 +3,23 @@
 
 // Creer le controller 'personnesController'
 angular.module('personnes').controller('personneController', ['$scope', '$routeParams', '$location', 'PersonneService',
-    function($scope, $routeParams, $location, PersonneService) {
+    'RoleService', function($scope, $routeParams, $location, PersonneService, RoleService) {
         // Service d'Authentication
         //$scope.authentication = Authentication;
-
+	    $scope.roles = RoleService.query(); 
         // methode controller pour créer des personnes 
         $scope.create = function() {
             // Utiliser les champs du form pour créer un nouveau $resource personne
             var personneService = new PersonneService({
+            	prenom: this.prenom,
+            	nom: this.nom,
                 titulo: this.titulo,
-                contenido: this.contenido
+                mail: this.mail,
+                pass: this.pass,
+                tel: this.tel,
+                ville: this.ville,
+                adresse: this.adresse,
+                role: this.role
             });
 
             // le methode '$save' de personneService pour envoyer une petition POST 
@@ -28,13 +35,13 @@ angular.module('personnes').controller('personneController', ['$scope', '$routeP
         // methode pour recuperer une liste des personnes
         $scope.find = function() {
             // Utiliser le methode 'query' de personneService pour envoyer une petition GET
-            $scope.personnes = personneService.query();
+            $scope.personnes = PersonneService.query();
         };
 
         // methode pour recuperer un personne
         $scope.findOne = function() {
             // Methode 'get' de personneService pour envoyer une petition GET
-            $scope.personne = personneService.get({
+            $scope.personne = PersonneService.get({
             	id: $routeParams.idPersonne
             });
         };

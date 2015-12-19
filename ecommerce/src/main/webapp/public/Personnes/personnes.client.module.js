@@ -1,1 +1,1 @@
-angular.module('personnes', []);
+angular.module('personnes', ['roles']);
