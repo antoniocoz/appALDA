@@ -9,6 +9,12 @@ angular.module('criteres').factory('CritereService', ['$resource', function($res
     }, {
         update: {
             method: 'PUT'
+        },
+        getByPersonne: {
+      	  method: 'GET', 
+            params:{ idPersonne: '@idPersonne'}, 
+            url:'api/criteres/byPersonne',
+            isArray:true
         }
     });
 }]);

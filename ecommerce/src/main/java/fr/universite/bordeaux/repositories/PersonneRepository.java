@@ -14,7 +14,9 @@ public class PersonneRepository {
 	
 	private static final String JPQL_SELECT = "SELECT p FROM Personne p";
 	private static final String JPQL_SELECT_PAR_EMAIL = "SELECT p FROM Personne p WHERE p.mail=:mail";
+	private static final String JPQL_SELECT_PAR_EMAIL_PASS = "SELECT p FROM Personne p WHERE p.mail=:mail and p.pass=:password";
 	private static final String PARAM_EMAIL = "mail";
+	private static final String PARAM_PASSWORD="password";
 	@PersistenceContext(unitName = "ecommercePersistenceUnit")
 	private EntityManager entityManager;
 	
@@ -32,6 +34,13 @@ public class PersonneRepository {
 	public Personne getByEmail(String email){
 		Query query=entityManager.createQuery(JPQL_SELECT_PAR_EMAIL);
 		query.setParameter(PARAM_EMAIL, email);
+		return (Personne) query.getSingleResult();
+	}
+	
+	public Personne getPersonne(String email, String password){
+		Query query=entityManager.createQuery(JPQL_SELECT_PAR_EMAIL_PASS);
+		query.setParameter(PARAM_EMAIL, email);
+		query.setParameter(PARAM_PASSWORD, password);
 		return (Personne) query.getSingleResult();
 	}
 	

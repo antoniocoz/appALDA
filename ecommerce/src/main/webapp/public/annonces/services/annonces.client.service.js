@@ -9,6 +9,10 @@ angular.module('annonces').factory('AnnonceService', ['$resource', function($res
     }, {
         update: {
             method: 'PUT'
-        }
+        },
+        envoyerEmail:{
+	    	method: 'POST', 
+            url:'api/annonces/envoyerEmail'
+	    }        
     });
 }]);

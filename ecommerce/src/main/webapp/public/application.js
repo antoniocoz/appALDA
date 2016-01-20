@@ -1,6 +1,8 @@
 var mainApplicationModuleName = 'ecommerce';
 
-var mainApplicationModule = angular.module(mainApplicationModuleName, ['ngResource','ngRoute','personnes','roles']);
+var mainApplicationModule = angular.module(mainApplicationModuleName, ['ngResource','ngRoute','personnes',
+                                                                       'roles','annonces','criteres',
+                                                                       'notifications']);
 
 mainApplicationModule.config(['$locationProvider',
   function($locationProvider) {

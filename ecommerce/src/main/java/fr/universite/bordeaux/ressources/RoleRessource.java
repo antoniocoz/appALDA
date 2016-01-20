@@ -25,27 +25,27 @@ public class RoleRessource {
 	
 	@GET
 	@Produces({MediaType.APPLICATION_JSON})
-	public List<Role> getPersonnes(){
+	public List<Role> getRoles(){
 		return roleRepository.getAll();
 	}
 	
 	@GET
 	@Path("/{id}")
 	@Produces({MediaType.APPLICATION_JSON})
-	public Role getPersonne(@PathParam("id") long idRole){
+	public Role getRole(@PathParam("id") long idRole){
 		return roleRepository.getId(idRole);
 	}
 	
 	@POST
 	@Consumes("application/json")
-	public void addPersonne(Role role){
+	public void addRole(Role role){
 		roleRepository.saveOrUpdate(role);
 	}
 	
 	@PUT
 	@Path("/{id}")
 	@Consumes("application/json")
-	public void updatePersonne(Role role){
+	public void updateRole(Role role){
 		roleRepository.saveOrUpdate(role);
 	}
 	

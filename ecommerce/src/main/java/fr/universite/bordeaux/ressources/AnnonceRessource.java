@@ -14,13 +14,17 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
 import fr.universite.bordeaux.entities.Annonce;
+import fr.universite.bordeaux.entities.Email;
 import fr.universite.bordeaux.repositories.AnnonceRepository;
+import fr.universite.bordeaux.service.SendEmail;
 
 @Path("/annonces")
 public class AnnonceRessource {
 
 	@EJB
 	private AnnonceRepository annonceRepository;
+	
+	private SendEmail sendEmail=new SendEmail();
 	
 	@GET
 	@Produces({MediaType.APPLICATION_JSON})
@@ -52,5 +56,12 @@ public class AnnonceRessource {
 	@Path("/{id}")
 	public void delete(@PathParam("id") long id){
 		annonceRepository.delete(id);
+	}
+	
+	@POST
+	@Path("/envoyerEmail")
+	@Consumes({MediaType.APPLICATION_JSON})
+	public void addAnnonce(Email email){
+		sendEmail.envoyerEmail(email.getFromEmail(), email.getToEmail(), email.getTitle(), email.getMessage());
 	}
 }

@@ -10,6 +10,7 @@ import javax.ws.rs.core.Application;
 
 import fr.universite.bordeaux.ressources.AnnonceRessource;
 import fr.universite.bordeaux.ressources.CritereRessource;
+import fr.universite.bordeaux.ressources.EmailRessource;
 import fr.universite.bordeaux.ressources.PersonneRessource;
 import fr.universite.bordeaux.ressources.RoleRessource;
 
@@ -33,6 +34,7 @@ public class ApplicationConfig extends Application{
         resources.add(AnnonceRessource.class);
         resources.add(CritereRessource.class);
         resources.add(RoleRessource.class);
+        resources.add(EmailRessource.class);
         //==> we could also choose packages, see below getProperties()
         
         System.out.println("REST configuration ended successfully.");

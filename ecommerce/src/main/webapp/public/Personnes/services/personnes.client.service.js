@@ -9,6 +9,11 @@ angular.module('personnes').factory('PersonneService', ['$resource', function($r
     }, {
         update: {
             method: 'PUT'
-        }
+        },
+	    login: {
+	    	method: 'POST', 
+	        //params:{ email: '@email',password:'@password'}, 
+            url:'api/personnes/personne'
+	    }
     });
 }]);

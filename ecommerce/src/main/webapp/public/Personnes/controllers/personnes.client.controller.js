@@ -2,10 +2,11 @@
 'use strict';
 
 // Creer le controller 'personnesController'
-angular.module('personnes').controller('personneController', ['$scope', '$routeParams', '$location', 'PersonneService',
-    'RoleService', function($scope, $routeParams, $location, PersonneService, RoleService) {
+angular.module('personnes').controller('personneController', ['$scope','$rootScope', '$routeParams', '$location', 'PersonneService',
+    'RoleService','Authentication', function($scope, $rootScope,$routeParams, $location, PersonneService, RoleService, Authentication) {
         // Service d'Authentication
-        //$scope.authentication = Authentication;
+	    //Authentication.user=null;
+        $scope.authentication = Authentication;
 	    $scope.roles = RoleService.query(); 
         // methode controller pour créer des personnes 
         $scope.create = function() {
@@ -13,7 +14,6 @@ angular.module('personnes').controller('personneController', ['$scope', '$routeP
             var personneService = new PersonneService({
             	prenom: this.prenom,
             	nom: this.nom,
-                titulo: this.titulo,
                 mail: this.mail,
                 pass: this.pass,
                 tel: this.tel,
@@ -37,14 +37,59 @@ angular.module('personnes').controller('personneController', ['$scope', '$routeP
             // Utiliser le methode 'query' de personneService pour envoyer une petition GET
             $scope.personnes = PersonneService.query();
         };
+        
+        
+        $scope.login = function() {
+            // Utiliser le methode 'query' de personneService pour envoyer une petition GET
+        	//console.log('email:'+this.email+'password:'+this.password);
+        	
+        	 var personneService = new PersonneService({
+             	prenom: null,
+            	nom: null,
+                mail: this.email,
+                pass: this.password,
+                tel: null,
+                ville: null,
+                adresse: null,
+                role: null
+             });
+        	 
+        	  personneService.$login(function(response) {
+        		  Authentication.user=response;
+        		  $rootScope.user=response;
+                  // Si un personne est cree du mode correct retourne a liste des personnes
+                  $location.path('annonces');
+              }, function(errorResponse) {
+                  // En autre cas, presenter l'utilisateur el message d'erreur
+            	  //console.log(errorResponse);
+            	  var erreur='Vérifiez si votre compte et mot de passe sont correctes';
+                  $scope.error = erreur;
+              });
+        	
+        };
 
+        // methode pour recuperer un personne
+        $scope.outLogin = function() {
+            // Methode 'get' de personneService pour envoyer une petition GET
+        	$rootScope.user=null;
+        	Authentication.user=null;
+        	$location.path('/');
+        };
+        
         // methode pour recuperer un personne
         $scope.findOne = function() {
             // Methode 'get' de personneService pour envoyer une petition GET
             $scope.personne = PersonneService.get({
-            	id: $routeParams.idPersonne
+            	id: $routeParams.personneId
             });
         };
+
+        // methode pour recuperer un personne
+        $scope.findLogin = function() {
+            // Methode 'get' de personneService pour envoyer une petition GET
+        	if($rootScope.user!=null)
+          	  $location.path('annonces');
+        };        
 
        // methode pour faire la mise a jour d'un personne
         $scope.update = function() {

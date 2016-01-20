@@ -64,11 +64,8 @@
                     <textarea rows="5" class="form-control" data-ng-model="personne.adresse" placeholder="Adresse"></textarea>
                 </div>
 	            <div class="form-group">
-	                 <select class="form-control" data-ng-model="personne.role" ng-options="role as role.nom for role in roles">
-	                     <option>Gender</option>
-	                     <option value="0">Male</option>
-	                     <option value="1">Female</option>
-	                     <option value="2">Other</option>
+	                 <select class="form-control" data-ng-model="personne.role" ng-options="role as role.nom for role in roles" ng-selected="(role.id==personne.role)">
+	                    
 	                 </select>
 	            </div>
 	            <div class="form-actions text-right pal">

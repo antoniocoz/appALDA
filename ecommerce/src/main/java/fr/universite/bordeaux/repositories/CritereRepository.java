@@ -29,11 +29,11 @@ public class CritereRepository {
         return criteres;		
 	}
 	
-	public Critere getByPersonne(long idPersonne){
+	public List<Critere> getByPersonne(long idPersonne){
 		Query query=entityManager.createQuery(JPQL_SELECT_PAR_PERSONNE);
 		query.setParameter(PARAM_PERSONNE, idPersonne);
-		Critere critere = (Critere)query.getSingleResult();
-		return critere;
+		List<Critere> criteres = (List<Critere>)query.getResultList();
+		return criteres;
 	}
 	
 	public Critere getId(long id){

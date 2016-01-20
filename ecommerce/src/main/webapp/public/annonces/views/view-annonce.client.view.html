@@ -1,32 +1,62 @@
-<section data-ng-controller="personneController" data-ng-init="find()">
+<section data-ng-controller="annonceController" data-ng-init="findOne()">
     <div class="panel panel-green">
-       <div class="panel-heading">Utilisateurs</div>
-       <div class="panel-body">
-           <table class="table table-hover table-bordered">
-               <thead>
-               <tr>
-                   <th>#</th>
-                   <th>Prenom</th>
-                   <th>Nom</th>
-                   <th>Adresse</th>
-                   <th>Ville</th>
-                   <th>Telephone</th>
-                   <th>Email</th>
-               </tr>
-               </thead>
-               <tbody>
-	               <tr data-ng-repeat="personne in personnes">
-	                   <td>{{personne.id}}</td>
-	                   <td>{{personne.prenom}}</td>
-	                   <td>{{personne.nom}}</td>
-	                   <td>{{personne.adresse}}</td>
-	                   <td>{{personne.ville}}</td>
-	                   <td>{{personne.tel}}</td>
-	                   <td>{{personne.mail}}</td>
-	               </tr>
-               </tbody>
-           </table>
-       </div>
-   </div>
-	
+        <div class="panel-heading">Annonce</div>
+        <div class="panel-body pan">
+          <form data-ng-submit="acheter()" novalidate>
+            <div class="form-body pal">
+
+                   <div class="form-group">
+                       <label for="inputName" class="control-label">Description</label>
+                       <div class="input-icon right">
+                           <i class="fa fa-user"></i>
+                           <span data-ng-bind="annonce.description"></span>
+                       </div>
+                   </div>
+                    
+                   <div class="form-group">
+                       <label for="inputName" class="control-label">Adresse</label>
+                       <div class="input-icon right">
+                           <i class="fa fa-user"></i>
+                           <span data-ng-bind="annonce.adresse"></span>
+                       </div>
+                   </div>
+         
+                   <div class="form-group">
+                       <label for="inputEmail" class="control-label">Surface</label>
+                       <div class="input-icon right">
+                           <i class="fa fa-envelope"></i>
+                           <span data-ng-bind="annonce.surface"></span>
+                       </div>
+                   </div>
+
+                   <div class="form-group">
+                       <label for="inputEmail" class="control-label">Prix</label>
+                       <div class="input-icon right">
+                           <i class="fa fa-envelope"></i>
+                           <span data-ng-bind="annonce.prix"></span>
+                       </div>
+                   </div>
+                   
+                   <div class="form-group">
+                       <label for="inputEmail" class="control-label">Ville</label>
+                       <div class="input-icon right">
+                           <i class="fa fa-envelope"></i>
+                           <span data-ng-bind="annonce.ville"></span>
+                       </div>
+                   </div>
+
+                   <div class="form-group">
+                       <label for="inputEmail" class="control-label">Photo</label>
+                       <div class="input-icon right">
+                           <img src="/ecommerce/public/images/thumbs/arch-1.jpg" alt="" title=""/>
+                       </div>
+                   </div>
+
+	            <div class="form-actions text-right pal">
+                    <button type="submit" class="btn btn-primary">Acheter</button>
+                </div>                
+            </div>
+           </form>
+        </div>
+    </div>
 </section>

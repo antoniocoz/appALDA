@@ -32,10 +32,18 @@ public class Annonce implements Serializable{
 	private String ville;
 	@Column(length=65535)
 	private String description;
+	@Column
+	private String observers;
+	@Column
+	private Integer vendu;
 	
 	@ManyToOne(cascade=CascadeType.MERGE,fetch=FetchType.LAZY)
 	@JoinColumn(name="idPersonne", referencedColumnName="id")
 	private Personne personne;
+	
+	public Annonce(){
+		this.vendu=0;
+	}
 	
 	public long getId() {
 		return id;
@@ -79,4 +87,23 @@ public class Annonce implements Serializable{
 	public void setDescription(String description) {
 		this.description = description;
 	}
+	public String getAdresse() {
+		return adresse;
+	}
+	public void setAdresse(String adresse) {
+		this.adresse = adresse;
+	}
+
+	public void setObservers(String observers) {
+		this.observers = observers;
+	}
+
+	public Integer getVendu() {
+		return vendu;
+	}
+
+	public void setVendu(Integer vendu) {
+		this.vendu = vendu;
+	}
+
 }

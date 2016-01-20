@@ -1,0 +1,32 @@
+<section data-ng-controller="notificationController" data-ng-init="find()">
+    <div class="panel panel-green">
+       <div class="panel-heading">Notifications</div>
+       <div class="panel-body">
+           <table class="table table-hover table-bordered">
+               <thead>
+               <tr>
+                   <th>From Email</th>
+                   <th>To Email</th>
+                   <th>Title</th>
+                   <th>Message</th> 
+               </tr>
+               </thead>
+               <tbody>
+	               <tr data-ng-repeat="notification in notifications">
+	                   
+	                   <td>{{notification.fromEmail}}</td>
+	                   <td>{{notification.toEmail}}</td>
+	                   <td>{{notification.title}}</td>
+	                   <td>{{notification.message}}</td>
+	                   <td>
+	                       <a href="#!/notifications/{{critere.id}}/view" >
+	                       <button class="btn btn-warning btn-edit">view</button>
+                           </a>
+                           <button class="btn btn-danger btn-delete" data-ng-click="delete(critere);">Supprimer</button> 
+                       </td>
+	               </tr>
+               </tbody>
+           </table>
+       </div>
+   </div>	
+</section>

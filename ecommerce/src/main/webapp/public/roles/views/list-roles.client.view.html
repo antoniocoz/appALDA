@@ -17,17 +17,19 @@
 	                   <td>{{role.nom}}</td>
 	                   <td>{{role.description}}</td>
 	                   <td>
+	                    <p data-ng-show="(authentication.user.role.id==1)">
 	                       <a href="#!/roles/{{role.id}}/edit" >
 	                       <button class="btn btn-warning btn-edit">Modifier</button>
                            </a>
                            <button class="btn btn-danger btn-delete" data-ng-click="delete(role)">Supprimer</button>
+                        </p>
                        </td>
 	               </tr>
                </tbody>
            </table>
        </div>
    </div>
-   <div>
+   <div data-ng-show="(authentication.user.role.id==1)">
         <a href="#!/roles/create">
             <button id="btn-add" class="btn btn-primary" ng-click="nouveau()">Nouveau</button>
         </a>

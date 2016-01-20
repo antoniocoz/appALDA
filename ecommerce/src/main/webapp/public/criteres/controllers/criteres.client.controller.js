@@ -2,17 +2,22 @@
 'use strict';
 
 // Creer le controller 'personnesController'
-angular.module('criteres').controller('critereController', ['$scope', '$routeParams', '$location', 'CritereService',
-    function($scope, $routeParams, $location, PersonneService) {
+angular.module('criteres').controller('critereController', ['$scope', '$routeParams', '$location', 'CritereService','Authentication',
+    function($scope, $routeParams, $location, CritereService,Authentication) {
         // Service d'Authentication
-        //$scope.authentication = Authentication;
+        $scope.authentication = Authentication;
 
         // methode controller pour créer des personnes 
         $scope.create = function() {
             // Utiliser les champs du form pour créer un nouveau $resource personne
             var critereService = new CritereService({
-                titulo: this.titulo,
-                contenido: this.contenido
+                type: this.type,
+                ville: this.ville,
+                prix_min: this.prix_min,
+                prix_max: this.prix_max,
+                surface_min: this.surface_min,
+                surface_max: this.surface_max,
+                personne:Authentication.user                
             });
 
             // le methode '$save' de personneService pour envoyer une petition POST 
@@ -28,14 +33,16 @@ angular.module('criteres').controller('critereController', ['$scope', '$routePar
         // methode pour recuperer une liste des personnes
         $scope.find = function() {
             // Utiliser le methode 'query' de personneService pour envoyer une petition GET
-            $scope.criteres = CritereService.query();
+        	  $scope.criteres = CritereService.getByPersonne({
+              	idPersonne: $scope.authentication.user.id
+              });
         };
 
         // methode pour recuperer un personne
         $scope.findOne = function() {
             // Methode 'get' de personneService pour envoyer une petition GET
             $scope.critere = CritereService.get({
-            	id: $routeParams.idPersonne
+            	id: $routeParams.critereId
             });
         };
 

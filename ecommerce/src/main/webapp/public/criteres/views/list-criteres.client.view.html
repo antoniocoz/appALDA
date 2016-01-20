@@ -1,36 +1,29 @@
-<section data-ng-controller="personneController" data-ng-init="find()">
+<section data-ng-controller="critereController" data-ng-init="find()">
     <div class="panel panel-green">
-       <div class="panel-heading">Utilisateurs</div>
+       <div class="panel-heading">Criteres</div>
        <div class="panel-body">
            <table class="table table-hover table-bordered">
                <thead>
                <tr>
-                   <th>#</th>
-                   <th>Prenom</th>
-                   <th>Nom</th>
-                   <th>Adresse</th>
+                   <th>Title</th>
                    <th>Ville</th>
-                   <th>Telephone</th>
-                   <th>Email</th>
-                   <th>Options</th>
+                   <th>Prix</th>
+                   <th>Surface</th>
+                   <th>Options</th>  
                </tr>
                </thead>
                <tbody>
-	               <tr data-ng-repeat="personne in personnes">
-	                   <td>{{personne.id}}</td>
-	                   <td>{{personne.prenom}}</td>
-	                   <td>{{personne.nom}}</td>
-	                   <td>{{personne.adresse}}</td>
-	                   <td>{{personne.ville}}</td>
-	                   <td>{{personne.tel}}</td>
-	                   <td>{{personne.mail}}</td>
+	               <tr data-ng-repeat="critere in criteres">
+	                   
+	                   <td>{{critere.type}}</td>
+	                   <td>{{critere.ville}}</td>
+	                   <td>{{critere.prix_min}} - {{critere.prix_max}}</td>
+	                   <td>{{critere.surface_min}} - {{critere.surface_max}}</td>
 	                   <td>
-	                       <a href="#!/personnes/{{personne._id}}/edit" >
+	                       <a href="#!/criteres/{{critere.id}}/edit" >
 	                       <button class="btn btn-warning btn-edit">Modifier</button>
                            </a>
-                           <a href="#!/personnes/{{personne._id}}">
-                              <button class="btn btn-danger btn-delete" data-ng-click="delete();">Supprimer</button> 
-                           </a>
+                           <button class="btn btn-danger btn-delete" data-ng-click="delete(critere);">Supprimer</button> 
                        </td>
 	               </tr>
                </tbody>
@@ -38,7 +31,7 @@
        </div>
    </div>
    <div>
-        <a href="#!/personnes/create">
+        <a href="#!/criteres/create">
             <button id="btn-add" class="btn btn-primary" ng-click="nouveau()">Nouveau</button>
         </a>
    </div>	

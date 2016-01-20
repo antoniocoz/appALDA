@@ -11,6 +11,7 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 
 import fr.universite.bordeaux.entities.Critere;
@@ -28,6 +29,13 @@ public class CritereRessource {
 		return critereRepository.getAll();
 	}
 
+	@GET
+	@Path("/byPersonne")
+	@Produces({MediaType.APPLICATION_JSON})
+	public List<Critere> getCriteres(@QueryParam("idPersonne") long idPersonne){
+		return critereRepository.getByPersonne(idPersonne);
+	}	
+	
 	@GET
 	@Path("/{id}")
 	@Produces({MediaType.APPLICATION_JSON})
