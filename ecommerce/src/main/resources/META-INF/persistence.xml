@@ -14,8 +14,6 @@
       <!-- Cette propriété active la log des requêtes SQL réalisées par OpenJPA -->
       <property name="openjpa.Log" value="SQL=Trace" />
       <property name="openjpa.jdbc.SynchronizeMappings" value="buildSchema(ForeignKeys=true)"/>
-      <property name="openjpa.DataCache" value="true"/>
-      <property name="openjpa.QueryCache" value="true"/>
     </properties>
   </persistence-unit>
 </persistence>
