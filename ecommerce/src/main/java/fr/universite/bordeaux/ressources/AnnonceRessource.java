@@ -61,7 +61,7 @@ public class AnnonceRessource {
 	@POST
 	@Path("/envoyerEmail")
 	@Consumes({MediaType.APPLICATION_JSON})
-	public void addAnnonce(Email email){
+	public void envoyerEmail(Email email){
 		sendEmail.envoyerEmail(email.getFromEmail(), email.getToEmail(), email.getTitle(), email.getMessage());
 	}
 }
