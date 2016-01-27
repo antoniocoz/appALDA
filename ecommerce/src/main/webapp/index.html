@@ -51,9 +51,10 @@
             <div class="topbar-main" data-ng-controller="personneController">
                 <ul class="nav navbar navbar-top-links navbar-right mbn">
                     <li class="dropdown topbar-user"><a data-hover="dropdown" href="#!/" class="dropdown-toggle"><img src="/ecommerce/public/images/avatar/profile-pic.png" alt="" class="img-responsive img-circle"/>&nbsp;<span class="hidden-xs">{{user.prenom}}</span>&nbsp;<span class="caret"></span></a>
-                        <ul class="dropdown-menu dropdown-user pull-right" data-ng-show="user">
-                            <li><a href="#!/personnes/{{user.id}}/edit"><i class="fa fa-user"></i>My Profile</a></li>
-                            <li><a href="#!/" data-ng-click="outLogin()"><i class="fa fa-key"></i>Log Out</a></li>
+                        <ul class="dropdown-menu dropdown-user pull-right" >
+                            <li data-ng-show="user"><a href="#!/personnes/{{user.id}}/edit"><i class="fa fa-user"></i>My Profile</a></li>
+                            <li data-ng-show="user"><a href="#!/" data-ng-click="outLogin()"><i class="fa fa-key"></i>Log Out</a></li>
+                            <li data-ng-hide="user"><a href="#!/login"><i class="fa fa-user"></i>Login</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -124,7 +125,7 @@
                         <span class="menu-title">Annonces</span>
                       </a>
                     </li>
-                    <li class="active" >
+                    <li class="active" data-ng-show="(user.role.id==1)">
                       <a href="/ecommerce/#!/criteres">
                         <i class="fa fa-tachometer fa-fw">
                            <div class="icon-bg bg-orange"></div>

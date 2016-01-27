@@ -105,5 +105,8 @@ public class Annonce implements Serializable{
 	public void setVendu(Integer vendu) {
 		this.vendu = vendu;
 	}
-
+	
+	public String getObservers() {
+		return observers;
+	}
 }

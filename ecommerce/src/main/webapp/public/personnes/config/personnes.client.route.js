@@ -5,7 +5,7 @@
 angular.module('personnes').config(['$routeProvider',
 	function($routeProvider) {
 		$routeProvider.
-		when('/', {
+		when('/login', {
 			templateUrl: 'public/personnes/views/login-personne.client.view.html'
 		}).
 		when('/personnes', {

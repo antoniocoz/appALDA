@@ -13,8 +13,8 @@ import javax.mail.internet.MimeMessage;
 
 public class SendEmail {
     
-	private final String username="cvantonio.07@gmail.com";
-	private final String password="metalica";
+	private final String username="aldabordeaux@gmail.com";
+	private final String password="adminalda";
 	
 	public SendEmail() {
 	  
