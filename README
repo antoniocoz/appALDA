@@ -5,5 +5,5 @@ Technologie au cote serveur JEE(EJB, JPA, JMAIL, JAX-REST)  et cote client javas
 
 Avant de lancer l'application 
 il faut ouvrir une terminale et lance la command bower install 
-dans le repertoire D:\MasterGL\ALDA\devoir\appALDA\ecommerce\src\main\webapp\public pour gerer les dependences au cote client
+dans le repertoire \appALDA\ecommerce\src\main\webapp\public pour gerer les dependences au cote client
 et puis lance la command mvn install pour construire le fichier WAR 
